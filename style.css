@@ -1,0 +1,72 @@
+/* Fonts */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v15/pxiEyp8kv8JHgFVrFJA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v15/pxiByp8kv8JHgFVrLCz7V1s.ttf) format('truetype');
+}
+/* Colors */
+:root {
+  --text: #593414;
+  --primary: #F2ECD8;
+  --secondary: #A6800F;
+  --extra1: #F2B90F;
+  --extra2: #F21D44;
+}
+/* Variables */
+.title {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: bold;
+}
+.text {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: normal;
+}
+body {
+  background-color: #F2ECD8;
+}
+.header {
+  text-align: center;
+  margin-top: 50px;
+}
+form {
+  width: 350px;
+  border: 3px solid #593414;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  margin-top: 50px;
+  border-radius: 2%;
+}
+form input {
+  width: 100%;
+  border: 2px solid #593414;
+}
+form .input-group button {
+  background-color: #593414;
+  color: #F2ECD8;
+  margin-top: 10px;
+}
+form .input-group button:hover {
+  background-color: #A6800F;
+  color: #fff;
+}
+form a {
+  text-decoration: none;
+  color: #A6800F;
+}
+form a:hover {
+  color: #F2B90F;
+}
