@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $username = '';
 $email = '';
 $password_1 = '';
@@ -81,12 +83,76 @@ if (isset($_POST['register'])){
         // save to db and check
         if(mysqli_query($db, $sql)){
             // success
-            header('Location: index.php');
+
+            // session
+            $_SESSION['username'] = $username;
+            $_SESSION['success'] = "You are now logged in";
+
+            // redirect
+            header('Location: dashboard.php');
+
         } else {
             echo 'query error: '. mysqli_error($db);
         }
+
+
     }
 
+}
+
+
+// log user in from login page
+if (isset($_POST['login'])){
+
+    // ensure that all fields are filled properly
+    if(empty($_POST['username'])){
+        $errors['username'] = "Username is required";
+    }
+
+    if(empty($_POST['password_1'])){
+        $errors['password_1'] = "Password is required";
+    }
+
+     // if there are no errors, look for user in db
+    if ($errors['username'] == '' && $errors['email'] == '' && $errors['password_1'] == '' && $errors['password_2'] == '' ){
+    
+        // escape sql chars
+        $username = mysqli_real_escape_string($db, $_POST['username']);
+        $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
+
+        // encrypt password befor retrieving user in the db
+        $password = md5($password_1);
+
+        // select user from db
+        $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password' ";
+
+        $result = mysqli_query($db, $query);
+        if (mysqli_num_rows($result) == 1){
+
+            //log user in
+
+             // session
+             $_SESSION['username'] = $username;
+             $_SESSION['success'] = "You are now logged in";
+ 
+             // redirect
+             header('Location: dashboard.php');
+
+        } else {
+
+            $errors['password_1'] = "Wrong username/password combination";
+            
+        }
+    }
+
+}
+
+
+// logout
+if (isset($_GET['logout'])){
+    session_destroy();
+    unset($_SESSION['username']);
+    header('location: login.php');
 }
 
 

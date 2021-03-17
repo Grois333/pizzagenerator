@@ -1,3 +1,5 @@
+<?php include('server.php'); ?>
+
 <?php include('templates/header.php'); ?>
 
 <div class="header">
@@ -6,13 +8,19 @@
 
 
 <form class="" method="post" action="login.php">
+
+     <!-- Display validation errors here -->
+     <?php //include('errors.php'); ?>
+
     <div class="input-group">
         <label class="text" for="">Username</label>
         <input type="text" name="username">
+        <div class="warning"><?php echo $errors['username']; ?></div>
     </div>
     <div class="input-group">
         <label class="text" for="">Password</label>
         <input type="password" name="password_1">
+        <div class="warning"><?php echo $errors['password_1']; ?></div>
     </div>
     <div class="input-group">
         <button type="submit" name="login" class="btn">Login</button>
