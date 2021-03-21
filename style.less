@@ -88,3 +88,55 @@ form{
 .warning{
     color: @extra2-color;
 }
+
+
+
+
+/* Dashboard  */
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    flex-direction: column;
+    margin-top: 50px;
+    padding: 30px;
+    
+
+    .success h4{
+        margin: 0;
+        .title();
+    }
+
+    p{
+        margin: 0;
+        .text();
+    }
+
+    .logout{
+        margin: 0;
+        align-self: flex-end;
+        position: absolute;
+
+        @media only screen and (max-width: 500px){
+                position: inherit;
+                align-self: auto;
+        }
+    }
+
+    .logout a{
+        color: @extra2-color;
+    }
+
+}
+
+
+
+
+
+/* Responsive   */
+
+
+
+

@@ -18,20 +18,41 @@
 <div class="content">
     <?php if (isset($_SESSION['success'])): ?>
         <div class="error success">
-            <h3> 
+            <h4> 
                 <?php 
                 echo $_SESSION['success'];
                 unset($_SESSION['success']);
                 ?>
-             </h3>
+             </h4>
         </div>
     <?php endif ?>
 
     <?php if (isset($_SESSION['username'])): ?>
         <p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
-        <p class=''><a href="dashboard.php?logout='1'">Logout</a></p>
+        <p class='logout'><a href="dashboard.php?logout='1'">Logout</a></p>
     <?php endif ?>
 </div>
+
+
+<section class="container ">
+		<h4 class="center">Add a Pizza</h4>
+		<form class="" action="dashboard.php" method="POST" enctype="multipart/form-data">
+			<label>Upload Image</label>
+            <input type="file" name="image">
+
+			<label>Pizza Title</label>
+			<input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>">
+			<div class="warning"><?php echo $addErrors['title']; ?></div>
+
+			<label>Ingredients (comma separated)</label>
+			<input type="text" name="ingredients" value="<?php echo htmlspecialchars($ingredients) ?>">
+			<div class="warning"><?php echo $addErrors['ingredients']; ?></div>
+
+			<div class="center">
+				<input type="submit" name="add" value="Add" class="btn">
+			</div>
+		</form>
+</section>
 
 
 <?php include('templates/footer.php'); ?>

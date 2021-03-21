@@ -157,4 +157,56 @@ if (isset($_GET['logout'])){
 
 
 
+// add a pizza
+$title = $ingredients = '';
+$addErrors = array('title' => '', 'ingredients' => '');
+
+	if(isset($_POST['add'])){
+		
+        // check image upload
+
+		// check title
+		if(empty($_POST['title'])){
+			$addErrors['title'] = 'A title is required';
+		} else{
+			$title = $_POST['title'];
+			if(!preg_match('/^[a-zA-Z\s]+$/', $title)){
+				$addErrors['title'] = 'Title must be letters and spaces only';
+			}
+		}
+
+		// check ingredients
+		if(empty($_POST['ingredients'])){
+			$addErrors['ingredients'] = 'At least one ingredient is required';
+		} else{
+			$ingredients = $_POST['ingredients'];
+			if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $ingredients)){
+				$addErrors['ingredients'] = 'Ingredients must be a comma separated list';
+			}
+		}
+
+		if(array_filter($addErrors)){
+			//echo 'errors in form add';
+		} else {
+			// escape sql chars
+			$title = mysqli_real_escape_string($db, $_POST['title']);
+			$ingredients = mysqli_real_escape_string($db, $_POST['ingredients']);
+
+			// create sql
+			//$sql = "INSERT INTO pizzas(title,ingredients) VALUES('$title','$ingredients')";
+
+			// save to db and check
+			if(mysqli_query($db, $sql)){
+				// success
+				header('Location: index.php');
+			} else {
+				echo 'query error: '. mysqli_error($db);
+			}
+
+		}
+
+	} // end POST check
+
+
+
 ?>

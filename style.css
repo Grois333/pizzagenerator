@@ -76,3 +76,40 @@ form a:hover {
 .warning {
   color: #F21D44;
 }
+/* Dashboard  */
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  flex-direction: column;
+  margin-top: 50px;
+  padding: 30px;
+}
+.content .success h4 {
+  margin: 0;
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: bold;
+}
+.content p {
+  margin: 0;
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: normal;
+}
+.content .logout {
+  margin: 0;
+  align-self: flex-end;
+  position: absolute;
+}
+@media only screen and (max-width: 500px) {
+  .content .logout {
+    position: inherit;
+    align-self: auto;
+  }
+}
+.content .logout a {
+  color: #F21D44;
+}
+/* Responsive   */

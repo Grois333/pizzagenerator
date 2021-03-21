@@ -1,4 +1,13 @@
-<?php include('server.php'); ?>
+<?php include('server.php'); 
+
+    // if user is logged in redirect to dashboard until logout
+    if (!empty($_SESSION['username'])){
+        header('location: dashboard.php');
+    }
+
+?>
+
+
 
 <?php include('templates/header.php'); ?>
 
