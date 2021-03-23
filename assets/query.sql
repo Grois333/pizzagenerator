@@ -6,3 +6,17 @@ CREATE TABLE `users` (
   `session` int(100) NOT NULL,
    PRIMARY KEY `id`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE `pizzas`
+(
+    `pizza_id` integer NOT NULL,
+    `image` varchar(255),
+    `title` varchar(255) NOT NULL,
+    `ingredients` varchar(255) NOT NULL,
+    `created_at` DATETIME NOT NULL
+                DEFAULT CURRENT_TIMESTAMP, 
+    FOREIGN KEY(`pizza_id`) REFERENCES `users`(`id`)
+);

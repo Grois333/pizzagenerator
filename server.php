@@ -2,6 +2,7 @@
 
 session_start();
 
+$user_id = 0;
 $username = '';
 $email = '';
 $password_1 = '';
@@ -127,10 +128,17 @@ if (isset($_POST['login'])){
         $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password' ";
 
         $result = mysqli_query($db, $query);
+
         if (mysqli_num_rows($result) == 1){
 
             //log user in
 
+             // user ID
+             $row = mysqli_fetch_assoc($result);
+             $user_id =  $row['id'];
+             $_SESSION['user_id'] = $user_id;
+             //echo $user_id;
+ 
              // session
              $_SESSION['username'] = $username;
              $_SESSION['success'] = "You are now logged in";
@@ -158,14 +166,27 @@ if (isset($_GET['logout'])){
 
 
 // add a pizza
-$title = $ingredients = '';
-$addErrors = array('title' => '', 'ingredients' => '');
+$file = $title = $ingredients = '';
+$addErrors = array('file' => '', 'title' => '', 'ingredients' => '');
+
+$targetDir = 'uploads/';
+$fileName = basename($_FILES["file"]["name"]);
+$targetFilePath = $targetDir . $fileName;
+$fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
 	if(isset($_POST['add'])){
 		
         // check image upload
+        if(empty($_FILES['file']['name'])){
+            $addErrors['file'] = 'Empty File upload';
+        
+        } else{
+            $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+            if(!file_exists($targetFilePath)){
+                if(in_array(strtolower($fileType), $allowTypes)){
+                    if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
 
-		// check title
+                        // check title
 		if(empty($_POST['title'])){
 			$addErrors['title'] = 'A title is required';
 		} else{
@@ -187,13 +208,18 @@ $addErrors = array('title' => '', 'ingredients' => '');
 
 		if(array_filter($addErrors)){
 			//echo 'errors in form add';
+            print_r('error');
 		} else {
 			// escape sql chars
+            //$file = mysqli_real_escape_string($db, $_POST['file']);
+            $intUser = mysqli_real_escape_string($db, $_SESSION['user_id']); //get current user id from session variable
 			$title = mysqli_real_escape_string($db, $_POST['title']);
 			$ingredients = mysqli_real_escape_string($db, $_POST['ingredients']);
 
+            //print_r($intUser);
+
 			// create sql
-			//$sql = "INSERT INTO pizzas(title,ingredients) VALUES('$title','$ingredients')";
+			$sql = "INSERT INTO pizzas(pizza_id,image,title,ingredients) VALUES('$intUser', '$fileName','$title','$ingredients')";
 
 			// save to db and check
 			if(mysqli_query($db, $sql)){
@@ -204,6 +230,26 @@ $addErrors = array('title' => '', 'ingredients' => '');
 			}
 
 		}
+
+                    //$insert = $db -> query("INSERT INTO pizzas(image) VALUES('$fileName')");
+                    
+                    if($insert){
+                        $addErrors['file'] = 'File uploaded';
+                    } else{
+                        $addErrors['file'] = 'File upload failed';
+                    }
+                } else {
+                    $addErrors['file'] = 'Error uploading file';
+                }
+            } else {
+                $addErrors['file'] = 'Only JPG, PNG, JPEG & GIF files allowed';
+            }
+        } else {
+            $addErrors['file'] = 'This file already exists';
+        }
+    }
+
+		
 
 	} // end POST check
 

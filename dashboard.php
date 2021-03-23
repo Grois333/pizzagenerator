@@ -5,6 +5,8 @@
         header('location: login.php');
     }
 
+    //print_r($_SESSION['user_id']);
+
 ?>
 
 <?php include('templates/header.php'); ?>
@@ -20,6 +22,7 @@
         <div class="error success">
             <h4> 
                 <?php 
+                //echo $_SESSION['user_id'];
                 echo $_SESSION['success'];
                 unset($_SESSION['success']);
                 ?>
@@ -38,7 +41,8 @@
 		<h4 class="center">Add a Pizza</h4>
 		<form class="" action="dashboard.php" method="POST" enctype="multipart/form-data">
 			<label>Upload Image</label>
-            <input type="file" name="image">
+            <input type="file" name="file">
+            <div class="warning"><?php echo $addErrors['file']; ?></div>
 
 			<label>Pizza Title</label>
 			<input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>">
