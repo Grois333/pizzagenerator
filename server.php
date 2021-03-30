@@ -166,15 +166,16 @@ if (isset($_GET['logout'])){
 
 
 // add a pizza
-$file = $title = $ingredients = '';
 $addErrors = array('file' => '', 'title' => '', 'ingredients' => '');
+$file = $title = $ingredients = '';
 
-$targetDir = 'uploads/';
-$fileName = basename($_FILES["file"]["name"]);
-$targetFilePath = $targetDir . $fileName;
-$fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+if(isset($_POST['add'])){
 
-	if(isset($_POST['add'])){
+    $targetDir = 'uploads/';
+    $fileName = basename($_FILES["file"]["name"]);
+    $targetFilePath = $targetDir . $fileName;
+    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
 		
         // check image upload
         if(empty($_FILES['file']['name'])){
@@ -251,7 +252,11 @@ $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
 		
 
-	} // end POST check
+} // end POST check
+
+
+
+
 
 
 
