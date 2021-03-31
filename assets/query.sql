@@ -12,11 +12,13 @@ CREATE TABLE `users` (
 
 CREATE TABLE `pizzas`
 (
+    `id` int(10) NOT NULL AUTO_INCREMENT,
     `pizza_id` integer NOT NULL,
     `image` varchar(255),
     `title` varchar(255) NOT NULL,
     `ingredients` varchar(255) NOT NULL,
     `created_at` DATETIME NOT NULL
-                DEFAULT CURRENT_TIMESTAMP, 
+                DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY `id`(`id`),
     FOREIGN KEY(`pizza_id`) REFERENCES `users`(`id`)
 );

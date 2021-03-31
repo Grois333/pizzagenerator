@@ -5,7 +5,7 @@ include('server.php');
 //Get Pizzas
 
 // write query for all pizzas
-$GetPizza = 'SELECT image, title, ingredients, pizza_id FROM pizzas ORDER BY created_at';
+$GetPizza = 'SELECT id, image, title, ingredients, pizza_id FROM pizzas ORDER BY created_at';
 
 // get the result set (set of rows)
 $GetResult = mysqli_query($db, $GetPizza);
@@ -54,9 +54,9 @@ mysqli_close($db);
                                     <?php endforeach; ?>
                                 </ul>
                             </div>
-                            <!-- <div class="">
-                                <a class="" href="details.php?id=<?php // echo $pizza['id'] ?>">more info</a>
-                            </div> -->
+                            <div class="">
+                                <a class="" href="details.php?id=<?php echo $pizza['id'] ?>">more info</a>
+                            </div>
                         </div>
                     </div>
 

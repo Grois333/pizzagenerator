@@ -75,7 +75,7 @@ if (isset($_POST['register'])){
         $email = mysqli_real_escape_string($db, $_POST['email']);
         $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
 
-        // encrypt password befor storing in the db
+        // encrypt password before storing in the db
         $password = md5($password_1);
 
         // create sql
@@ -171,90 +171,104 @@ $file = $title = $ingredients = '';
 
 if(isset($_POST['add'])){
 
+    // Upload image setup
     $targetDir = 'uploads/';
     $fileName = basename($_FILES["file"]["name"]);
     $targetFilePath = $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
-		
-        // check image upload
-        if(empty($_FILES['file']['name'])){
-            $addErrors['file'] = 'Empty File upload';
-        
-        } else{
-            $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-            if(!file_exists($targetFilePath)){
-                if(in_array(strtolower($fileType), $allowTypes)){
-                    if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
+    // check image upload
+    if(empty($_FILES['file']['name'])){
+        $addErrors['file'] = 'Empty File upload';
+    
+    } 
+    
 
-                        // check title
-		if(empty($_POST['title'])){
-			$addErrors['title'] = 'A title is required';
-		} else{
-			$title = $_POST['title'];
-			if(!preg_match('/^[a-zA-Z\s]+$/', $title)){
-				$addErrors['title'] = 'Title must be letters and spaces only';
-			}
-		}
-
-		// check ingredients
-		if(empty($_POST['ingredients'])){
-			$addErrors['ingredients'] = 'At least one ingredient is required';
-		} else{
-			$ingredients = $_POST['ingredients'];
-			if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $ingredients)){
-				$addErrors['ingredients'] = 'Ingredients must be a comma separated list';
-			}
-		}
-
-		if(array_filter($addErrors)){
-			//echo 'errors in form add';
-            print_r('error');
-		} else {
-			// escape sql chars
-            //$file = mysqli_real_escape_string($db, $_POST['file']);
-            $intUser = mysqli_real_escape_string($db, $_SESSION['user_id']); //get current user id from session variable
-			$title = mysqli_real_escape_string($db, $_POST['title']);
-			$ingredients = mysqli_real_escape_string($db, $_POST['ingredients']);
-
-            //print_r($intUser);
-
-			// create sql
-			$sql = "INSERT INTO pizzas(pizza_id,image,title,ingredients) VALUES('$intUser', '$fileName','$title','$ingredients')";
-
-			// save to db and check
-			if(mysqli_query($db, $sql)){
-				// success
-				header('Location: index.php');
-			} else {
-				echo 'query error: '. mysqli_error($db);
-			}
-
-		}
-
-                    //$insert = $db -> query("INSERT INTO pizzas(image) VALUES('$fileName')");
-                    
-                    if($insert){
-                        $addErrors['file'] = 'File uploaded';
-                    } else{
-                        $addErrors['file'] = 'File upload failed';
-                    }
-                } else {
-                    $addErrors['file'] = 'Error uploading file';
-                }
-            } else {
-                $addErrors['file'] = 'Only JPG, PNG, JPEG & GIF files allowed';
-            }
-        } else {
-            $addErrors['file'] = 'This file already exists';
+     // check title
+     if(empty($_POST['title'])){
+        $addErrors['title'] = 'A title is required';
+    } else{
+        $title = $_POST['title'];
+        if(!preg_match('/^[a-zA-Z\s]+$/', $title)){
+            $addErrors['title'] = 'Title must be letters and spaces only';
         }
     }
 
-		
+
+    // check ingredients
+    if(empty($_POST['ingredients'])){
+        $addErrors['ingredients'] = 'At least one ingredient is required';
+    } else{
+        $ingredients = $_POST['ingredients'];
+        if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $ingredients)){
+            $addErrors['ingredients'] = 'Ingredients must be a comma separated list';
+        }
+    }
+
+
+    if(array_filter($addErrors)){
+
+        //echo 'errors in form add';
+        print_r('error');
+
+    } else {
+
+        // If all fields are filled correctly
+
+        // Upload image
+        $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+        if(!file_exists($targetFilePath)){
+            if(in_array(strtolower($fileType), $allowTypes)){
+                
+                move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
+
+                // if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
+                // } else {
+                //     $addErrors['file'] = 'Error uploading file';
+                //     //unlink($_POST['filename']);
+                // }
+
+            }  else {
+                $addErrors['file'] = 'Only JPG, PNG, JPEG & GIF files allowed';
+            } 
+
+        }  else {
+            $addErrors['file'] = 'This file already exists';
+
+        } 
+
+
+        // escape sql chars
+        //$file = mysqli_real_escape_string($db, $_POST['file']);
+        $intUser = mysqli_real_escape_string($db, $_SESSION['user_id']); //get current user id from session variable
+        $title = mysqli_real_escape_string($db, $_POST['title']);
+        $ingredients = mysqli_real_escape_string($db, $_POST['ingredients']);
+
+        //print_r($intUser);
+
+        // create sql
+        $sql = "INSERT INTO pizzas(pizza_id,image,title,ingredients) VALUES('$intUser', '$fileName','$title','$ingredients')";
+
+
+        //$insert = $db -> query("INSERT INTO pizzas(image) VALUES('$fileName')");
+                
+        if($sql){
+            $addErrors['file'] = 'File uploaded';
+        } else{
+            $addErrors['file'] = 'File upload failed';
+        } 
+
+        // save to db and check
+        if(mysqli_query($db, $sql)){
+            // success
+            header('Location: index.php');
+        } else {
+            echo 'query error: '. mysqli_error($db);
+        }
+
+    }
 
 } // end POST check
-
-
 
 
 
