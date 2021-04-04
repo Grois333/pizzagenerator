@@ -58,8 +58,7 @@ if(isset($_GET['id'])){
 
         $sql = "SELECT * FROM pizzas WHERE id = $id_to_order";
 
-
-         // get the query result
+        // get the query result
         $result = mysqli_query($db, $sql);
 
         // fetch result in array format
@@ -71,9 +70,6 @@ if(isset($_GET['id'])){
         // POPUP FORM: Name, email, phone, Comments, Confirm Order
 
 
-
-    
-
         if(mysqli_query($db, $sql)){
             mysqli_free_result($result);
             mysqli_close($db);
@@ -81,6 +77,7 @@ if(isset($_GET['id'])){
         } else {
             echo 'query error: '. mysqli_error($db);
         }
+        
 
     }
 
@@ -90,6 +87,8 @@ if(isset($_GET['id'])){
 
 
 <?php include('templates/header.php'); ?>
+
+<INPUT type="button" value="Back" onClick="history.go(-1);">
 
 <div class="container center grey-text">
 		<?php if($pizza): ?>
@@ -108,22 +107,55 @@ if(isset($_GET['id'])){
                 echo $pizza['pizza_id']; //pizza ID 
                 */
 
-                if($_SESSION['user_id'] == $pizza['pizza_id']): ?>
+                //If user is Logged In
+                if(isset($_SESSION['user_id'])):
 
-                    <form action="details.php" method="POST">
-                    <input type="hidden" name="id_to_delete" value="<?php echo $pizza['id']; ?>">
-                    <input type="submit" name="delete" value="Delete" class="btn">
-                    </form>
+                    if($_SESSION['user_id'] == $pizza['pizza_id']): ?>
+
+                        <form action="<?=$_SERVER['PHP_SELF'];?>" method="POST">
+                            <input type="hidden" name="id_to_delete" value="<?php echo $pizza['id']; ?>">
+                            <input type="submit" name="delete" value="Delete" class="btn">
+                        </form>
+                    <?php endif ?>
+
                 <?php endif ?>
 
-  <!--*****************************************  CONVERT TO MODAL************************************************************************   -->
-                <!-- ORDER FORM MODAL -->
-                <form action="details.php" method="POST">
-                    <input type="hidden" name="id_to_order" value="<?php echo $pizza['id']; ?>">
-                    <input type="submit" name="order" value="Order" class="btn">
-                </form>
- <!--*****************************************  CONVERT TO MODAL************************************************************************   -->
- 
+
+               <!-- ORDER FORM MODAL -->
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#orderModal">
+                Order
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirm Order Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                                <div class="modal-body">
+                                    <form name="order" action="details.php" method="POST">
+                                        <input type="hidden" name="id_to_order" value="<?php echo $pizza['id']; ?>">
+
+                                        <input type="text" name='name' placeholder="Name">
+                                        <div class="warning"></div>
+
+                                        <input type="tel" name='phone' placeholder="Phone">
+                                        <input type="email" name='email' placeholder="Email">
+                                        <textarea name="comments" id="" cols="10" rows="5" placeholder="comments"></textarea>
+                                    
+                                        <input type="submit" name="order" value="Confirm Order" class="btn">
+                                    </form>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+
+        
 
 		<?php else: ?>
 			<h5>No such pizza exists.</h5>

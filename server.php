@@ -20,6 +20,7 @@ if(!$db){
     echo 'Connection error: '. mysqli_connect_error();
 }
 
+//Register
 // if the register button is clicked
 if (isset($_POST['register'])){
     
@@ -102,6 +103,7 @@ if (isset($_POST['register'])){
 }
 
 
+//Login
 // log user in from login page
 if (isset($_POST['login'])){
 
