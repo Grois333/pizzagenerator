@@ -5,7 +5,7 @@ include('server.php');
 
 //Get Pizza Info
 
-// check GET request id param
+// check GET request id param (from header)
 if(isset($_GET['id'])){
 		
     // escape sql chars
@@ -51,10 +51,25 @@ if(isset($_GET['id'])){
     }
 
 
-    //Order Pizza
-    if(isset($_POST['order'])){
+  
 
+
+    //Order Pizza
+    if(isset($_POST['id_to_order'])){
+ 
+        //echo "yes this is just example and working";
+
+        //Sanitize
         $id_to_order = mysqli_real_escape_string($db, $_POST['id_to_order']);
+        $customer_name = mysqli_real_escape_string($db, $_POST['name']);
+        $phone = mysqli_real_escape_string($db, $_POST['phone']);
+        $email = mysqli_real_escape_string($db, $_POST['email']);
+        $comments = mysqli_real_escape_string($db, $_POST['comments']);
+        //print_r($id_to_order);
+        //print_r($customer_name);
+        //print_r($phone);
+        //print_r($email);
+        //print_r($comments);
 
         $sql = "SELECT * FROM pizzas WHERE id = $id_to_order";
 
@@ -64,10 +79,30 @@ if(isset($_GET['id'])){
         // fetch result in array format
         $pizza = mysqli_fetch_assoc($result);
 
-        print_r($pizza);
-        print_r($pizza['title']);
+        //print_r($pizza);
+        //print_r($pizza['title']);
+
+        //Set variable values for Pizza Details
+        $pizzaImage = $pizza['image'];
+        $pizzaTitle = $pizza['title'];
+        $pizzaIngredients = $pizza['ingredients'];
+
+        
         // INSERT INFO IN ORDERS TABLE
-        // POPUP FORM: Name, email, phone, Comments, Confirm Order
+        $sql = "INSERT INTO orders(image,title,ingredients,customer_name,phone,email,comments) VALUES('$pizzaImage','$pizzaTitle','$pizzaIngredients','$customer_name','$phone','$email','$comments')";
+
+
+        // Send Email Order
+        $to_email = "example@gmail.com";
+        $subject = "Pizza Order";
+        $body = "Hi,nn This is a Pizza Order Email";
+        $headers = "From: sender\'s email";
+        
+        if (mail($to_email, $subject, $body, $headers)) {
+            echo "Email successfully sent to $to_email...";
+        } else {
+            echo "Email sending failed...";
+        }
 
 
         if(mysqli_query($db, $sql)){
@@ -137,15 +172,19 @@ if(isset($_GET['id'])){
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                                 <div class="modal-body">
-                                    <form name="order" action="details.php" method="POST">
+                                    <form name="orderForm" action="details.php" method="POST">
                                         <input type="hidden" name="id_to_order" value="<?php echo $pizza['id']; ?>">
 
                                         <input type="text" name='name' placeholder="Name">
-                                        <div class="warning"></div>
+                                        <div class="warning orderName-error"></div>
 
                                         <input type="tel" name='phone' placeholder="Phone">
-                                        <input type="email" name='email' placeholder="Email">
-                                        <textarea name="comments" id="" cols="10" rows="5" placeholder="comments"></textarea>
+                                        <div class="warning orderPhone-error"></div>
+
+                                        <input type="email" name='email' placeholder="Email(opcional)">
+                                        <div class="warning orderEmail-error"></div>
+
+                                        <textarea name="comments" id="" cols="10" rows="5" placeholder="comments(optional)"></textarea>
                                     
                                         <input type="submit" name="order" value="Confirm Order" class="btn">
                                     </form>
@@ -153,7 +192,6 @@ if(isset($_GET['id'])){
                         </div>
                     </div>
                 </div>
-
 
         
 

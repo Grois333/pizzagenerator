@@ -22,3 +22,20 @@ CREATE TABLE `pizzas`
     PRIMARY KEY `id`(`id`),
     FOREIGN KEY(`pizza_id`) REFERENCES `users`(`id`)
 );
+
+
+
+CREATE TABLE `orders`
+(
+    `id` int(10) NOT NULL AUTO_INCREMENT,
+    `image` varchar(255),
+    `title` varchar(255) NOT NULL,
+    `ingredients` varchar(255) NOT NULL,
+    `customer_name` varchar(255) NOT NULL,
+    `phone`varchar(255) NOT NULL,
+    `email` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `comments`varchar(255) NOT NULL,
+    `order_date` DATETIME NOT NULL
+                DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY `id`(`id`)
+);
