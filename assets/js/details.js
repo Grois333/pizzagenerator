@@ -28,9 +28,9 @@ $(document).ready(function() {
           url:  'details.php',
           data: $(this).serialize(),  //get all input data
           success: function (data) {
-            alert('Form was submitted, Thanks for your order!');
+            //alert('Form was submitted, Thanks for your order!');
             //console.log(data);
-            //location.href = 'index.php';
+            location.href = 'order-thanks.php';
           },
           error: function (response) {
             console.log(response);

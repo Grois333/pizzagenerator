@@ -93,7 +93,7 @@ if(isset($_GET['id'])){
 
 
         // Send Email Order
-        $to_email = "example@gmail.com";
+        $to_email = $email;
         $subject = "Pizza Order";
         $body = "Hi,nn This is a Pizza Order Email";
         $headers = "From: sender\'s email";
@@ -113,10 +113,7 @@ if(isset($_GET['id'])){
             echo 'query error: '. mysqli_error($db);
         }
         
-
     }
-
-
 
 ?>
 

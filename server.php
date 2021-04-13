@@ -58,6 +58,13 @@ if (isset($_POST['register'])){
         $errors['password_2'] = "The two passwords do not match";
     }
 
+    //Check if user is registerd
+    $select = mysqli_query($db,"SELECT `email` FROM `users` WHERE `email` = '".$_POST['email']."'");
+    if(mysqli_num_rows($select)) {
+        //exit('This email is already being used');
+        $errors['password_1'] = "This email is already being used";
+    }
+
 
     // if there are no errors, save user to database
     if ($errors['username'] == '' && $errors['email'] == '' && $errors['password_1'] == '' && $errors['password_2'] == '' ){
@@ -86,12 +93,24 @@ if (isset($_POST['register'])){
         if(mysqli_query($db, $sql)){
             // success
 
+            // select user from db
+            $query = "SELECT * FROM users WHERE email = '$email'";
+
+            $result = mysqli_query($db, $query);
+
+            // Get user ID
+            $row = mysqli_fetch_assoc($result);
+            $user_id =  $row['id'];
+            $_SESSION['user_id'] = $user_id;
+            //echo $user_id;
+            //print_r($_SESSION['user_id']);
+
             // session
             $_SESSION['username'] = $username;
             $_SESSION['success'] = "You are now logged in";
 
             // redirect
-            header('Location: dashboard.php');
+           header('Location: dashboard.php');
 
         } else {
             echo 'query error: '. mysqli_error($db);
