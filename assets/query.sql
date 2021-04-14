@@ -28,6 +28,7 @@ CREATE TABLE `pizzas`
 CREATE TABLE `orders`
 (
     `id` int(10) NOT NULL AUTO_INCREMENT,
+    `id_of_pizza` integer NOT NULL,
     `image` varchar(255),
     `title` varchar(255) NOT NULL,
     `ingredients` varchar(255) NOT NULL,
@@ -37,5 +38,6 @@ CREATE TABLE `orders`
     `comments`varchar(255) NOT NULL,
     `order_date` DATETIME NOT NULL
                 DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY `id`(`id`)
+    PRIMARY KEY `id`(`id`),
+    FOREIGN KEY(`id_of_pizza`) REFERENCES `pizzas`(`pizza_id`)
 );

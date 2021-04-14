@@ -8,6 +8,33 @@
     }
 
     //print_r($_SESSION['user_id']);
+    $userId = $_SESSION['user_id'];
+    //print_r($userId);
+
+
+
+    //Get Orders
+
+    // write query for all orders
+    $GetOrder = "SELECT id,id_of_pizza,image,title,ingredients,customer_name,phone,email,comments FROM orders WHERE id_of_pizza = $userId ORDER BY order_date";
+    
+    // get the result set (set of rows)
+    $GetResult = mysqli_query($db, $GetOrder);
+
+    // fetch the resulting rows as an array
+    $orders = mysqli_fetch_all($GetResult, MYSQLI_ASSOC);
+
+    // free the $result from memory (good practice)
+    mysqli_free_result($GetResult);
+
+    // close connection
+    mysqli_close($db);
+
+    //Debug
+    print_r($orders);
+
+
+
 
 ?>
 
@@ -58,6 +85,13 @@
 				<input type="submit" name="add" value="Add" class="btn">
 			</div>
 		</form>
+</section>
+
+
+<section class="orders-section">
+
+        <h4>Orders</h4>
+
 </section>
 
 

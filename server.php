@@ -230,7 +230,7 @@ if(isset($_POST['add'])){
     if(array_filter($addErrors)){
 
         //echo 'errors in form add';
-        print_r('error');
+        //print_r('error');
 
     } else {
 

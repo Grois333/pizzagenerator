@@ -50,7 +50,6 @@ if(isset($_GET['id'])){
 
     }
 
-
   
 
 
@@ -81,15 +80,17 @@ if(isset($_GET['id'])){
 
         //print_r($pizza);
         //print_r($pizza['title']);
+        //print_r($pizza['pizza_id']);
 
         //Set variable values for Pizza Details
         $pizzaImage = $pizza['image'];
         $pizzaTitle = $pizza['title'];
         $pizzaIngredients = $pizza['ingredients'];
+        $id_pizza = $pizza['pizza_id'];
 
         
         // INSERT INFO IN ORDERS TABLE
-        $sql = "INSERT INTO orders(image,title,ingredients,customer_name,phone,email,comments) VALUES('$pizzaImage','$pizzaTitle','$pizzaIngredients','$customer_name','$phone','$email','$comments')";
+        $sql = "INSERT INTO orders(id_of_pizza,image,title,ingredients,customer_name,phone,email,comments) VALUES('$id_pizza','$pizzaImage','$pizzaTitle','$pizzaIngredients','$customer_name','$phone','$email','$comments')";
 
 
         // Send Email Order
@@ -108,7 +109,7 @@ if(isset($_GET['id'])){
         if(mysqli_query($db, $sql)){
             mysqli_free_result($result);
             mysqli_close($db);
-            //header('Location: index.php');
+            //header('Location: order-thanks.php');
         } else {
             echo 'query error: '. mysqli_error($db);
         }
