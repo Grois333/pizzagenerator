@@ -123,7 +123,6 @@
                                 
                     ?>
         
-
                         <tr>
                             <td style="border: 1px solid"><?php echo $order['id'] ?></td>
                             <td style="border: 1px solid"><img src="<?=$imageURL;?>" alt="pizza"></td>
