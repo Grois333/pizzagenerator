@@ -16,7 +16,7 @@
     //Get Orders
 
     // write query for all orders
-    $GetOrder = "SELECT id,id_of_pizza,image,title,ingredients,customer_name,phone,email,comments FROM orders WHERE id_of_pizza = $userId ORDER BY order_date";
+    $GetOrder = "SELECT id,id_of_pizza,image,title,ingredients,customer_name,phone,email,comments,order_date FROM orders WHERE id_of_pizza = $userId ORDER BY order_date";
     
     // get the result set (set of rows)
     $GetResult = mysqli_query($db, $GetOrder);
@@ -31,7 +31,7 @@
     mysqli_close($db);
 
     //Debug
-    print_r($orders);
+    //print_r($orders);
 
 
 
@@ -39,6 +39,7 @@
 ?>
 
 <?php include('templates/header.php'); ?>
+
 
 
 <div class="header">
@@ -88,9 +89,68 @@
 </section>
 
 
+
 <section class="orders-section">
 
-        <h4>Orders</h4>
+    <h4>Orders:</h4>
+
+    <?php if($orders > 0){ ?>
+
+        <div class="">
+
+            <div class="">
+
+                <table border="1" cellspacing="0">
+                    <tr>
+                        <th style="border: 1px solid">Order N°</th>
+                        <th style="border: 1px solid">Image</th>
+                        <th style="border: 1px solid">Pizza Name</th>
+                        <th style="border: 1px solid">Ingredients</th>
+                        <th style="border: 1px solid">Customer</th>
+                        <th style="border: 1px solid">Phone</th>
+                        <th style="border: 1px solid">Email</th>
+                        <th style="border: 1px solid">Comments</th>
+                        <th style="border: 1px solid">Order Date</th>
+                    </tr>
+
+                    <?php foreach($orders as $order): 
+
+                        $imageURL = 'uploads/'. $order['image'];
+
+                        // Format Date 
+                        $myDateTime = $order['order_date'];
+                        $new_date = date('D M Y H:i:s', strtotime($myDateTime));
+                                
+                    ?>
+        
+
+                        <tr>
+                            <td style="border: 1px solid"><?php echo $order['id'] ?></td>
+                            <td style="border: 1px solid"><img src="<?=$imageURL;?>" alt="pizza"></td>
+                            <td style="border: 1px solid"><?php echo htmlspecialchars($order['title']); ?></td>
+                            <td style="border: 1px solid">
+                                <ul class="">
+                                    <?php foreach(explode(',', $order['ingredients']) as $ing): ?>
+                                        <li><?php echo htmlspecialchars($ing); ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </td>
+                            <td style="border: 1px solid"><?php echo $order['customer_name'] ?></td>
+                            <td style="border: 1px solid"><?php echo $order['phone'] ?></td>
+                            <td style="border: 1px solid"><?php echo $order['email'] ?></td>
+                            <td style="border: 1px solid"><?php echo $order['comments'] ?></td>
+                            <td style="border: 1px solid"><?php echo $new_date?></td>
+                        </tr>
+               
+
+                    <?php endforeach; ?>
+            
+                </table>
+        
+            </div>
+        </div>
+
+    <?php } ?>
 
 </section>
 
