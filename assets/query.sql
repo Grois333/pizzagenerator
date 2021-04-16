@@ -41,3 +41,7 @@ CREATE TABLE `orders`
     PRIMARY KEY `id`(`id`),
     FOREIGN KEY(`id_of_pizza`) REFERENCES `pizzas`(`pizza_id`)
 );
+
+
+
+CONFIRM ORDERS (INCLUDE id_of_pizza and status)
