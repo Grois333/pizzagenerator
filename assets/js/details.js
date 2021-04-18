@@ -43,20 +43,20 @@ $(document).ready(function() {
     //Confirm Order Status Submit Button
 
     $('.confirmOrderForm').each(function(){
-      console.info(this)
+      //console.info(this)
 
       //Access this button and disable it
       let thisButton = $(this).find(".confirmOrder")[0];
-      console.log(thisButton);
+      //console.log(thisButton);
       $(thisButton).prop('disabled', 'disabled');
 
       //Access Select Input
       let sel = $(this).find("select");
-      console.log(sel);
+      //console.log(sel);
 
       //Access select option
       let selectedOption = $(this).find(":selected").val(); 
-      console.log(selectedOption); 
+      //console.log(selectedOption); 
 
       //check selected option and return according
       function verifyAdSettings() {
@@ -80,59 +80,8 @@ $(document).ready(function() {
       $(sel).change(updateFormEnabled);
 
 
-      
-
     });
     
-
-
-
-
-    // $('.confirmOrder').attr('disabled', 'disabled');
-
-    // $(".confirmOrderForm").each(function() { 
-
-    // })
-
-    // $("#statusSelect > option").each(function() {
-
-    //   function updateFormEnabled() {
-    //     if (verifyAdSettings()) {
-    //       this.prop('disabled', false);
-    //     } else {
-    //       this.attr('disabled', 'disabled');
-    //     }
-    //   }
-
-
-
-
-
-
-
-  //})
-
-
-
-
-
-    // function updateFormEnabled() {
-    //     if (verifyAdSettings()) {
-    //         $('.confirmOrder').prop('disabled', false);
-    //     } else {
-    //         $('.confirmOrder').attr('disabled', 'disabled');
-    //     }
-    // }
-
-    // function verifyAdSettings() {
-    //     if ($('.statusSelect').val() != '') {
-    //         return true;
-    //     } else {
-    //         return false
-    //     }
-    // }
-
-    // $('.statusSelect').change(updateFormEnabled);
 
     
 });

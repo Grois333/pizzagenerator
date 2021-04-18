@@ -72,26 +72,33 @@
 
 
         //Insert into Confirm Orders Table
-        
+        $sql = "INSERT INTO confirm_orders(id_of_order,id_of_pizza,image,title,ingredients,customer_name,phone,email,comments,order_date,order_status) VALUES('$order_id','$order_pizza_id','$order_image','$order_title','$order_ingredients','$order_customer_name','$order_phone','$order_email','$order_comments','$order_date','$order_status')";
+
+        if(mysqli_query($db, $sql)){
+            mysqli_free_result($result);
+            //mysqli_close($db);
+            //header('Location: dashboard.php');
+        } else {
+            echo 'query error: '. mysqli_error($db);
+        }
 
 
 
-        // if(mysqli_query($db, $sql)){
-        //     mysqli_free_result($result);
-        //     mysqli_close($db);
-        //     //header('Location: dashboard.php');
-        // } else {
-        //     echo 'query error: '. mysqli_error($db);
-        // }
+        //Delete current order
+
+        $sql2 = "DELETE FROM orders WHERE id = $order_id";
+
+        if(mysqli_query($db, $sql2)){
+            header('Location: dashboard.php');
+        } else {
+            echo 'query error: '. mysqli_error($db);
+        }
 
 
 
     }
  
 
-
-
-    //Delete current order
 
 
 
@@ -152,7 +159,7 @@
 
 <section class="orders-section">
 
-    <h4>Orders:</h4>
+    <h4>Current Orders:</h4>
 
     <?php if($orders > 0){ ?>
 
@@ -225,6 +232,10 @@
     <?php } ?>
 
 </section>
+
+
+
+<h4>Check Orders <a href="order-history.php">History</a></h4>
 
 
 <?php include('templates/footer.php'); ?>

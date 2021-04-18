@@ -44,4 +44,22 @@ CREATE TABLE `orders`
 
 
 
-CONFIRM ORDERS (INCLUDE id_of_pizza and status)
+
+
+CREATE TABLE `confirm_orders`
+(
+    `id` int(10) NOT NULL AUTO_INCREMENT,
+    `id_of_order` integer NOT NULL,
+    `id_of_pizza` integer NOT NULL,
+    `image` varchar(255),
+    `title` varchar(255) NOT NULL,
+    `ingredients` varchar(255) NOT NULL,
+    `customer_name` varchar(255) NOT NULL,
+    `phone`varchar(255) NOT NULL,
+    `email` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `comments`varchar(255) NOT NULL,
+    `order_date` DATETIME NOT NULL
+                DEFAULT CURRENT_TIMESTAMP,
+    `order_status`varchar(255) NOT NULL,
+    PRIMARY KEY `id`(`id`)
+);
