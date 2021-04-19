@@ -17,6 +17,8 @@
 @secondary-color: #A6800F;
 @extra1-color: #F2B90F;
 @extra2-color: #F21D44;
+@extra3-color: #FCF7E0;
+
 
 
 .title{
@@ -31,14 +33,61 @@
     font-weight: normal;
 }
 
+html{
+    overflow-x: hidden;
+}
+
 
 body{
     background-color: @primary-color;
+    overflow-x: hidden;
 }
+
+
+/* Header */
+
+nav{
+    background-color: @extra3-color;
+
+    a{
+        .text();
+    }
+}
+
+
+
+/*  Home Page  */
 
 .header{
     text-align: center;
     margin-top: 50px;
+}
+
+
+.pizza-container{
+
+    margin-top: 50px;
+
+    .row{
+
+        .col{
+            border: 1px solid;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    .pizza-wrapper{
+
+        border: 1px solid red;
+        width: fit-content;
+       
+        img{
+            width: 400px;
+        }
+    }
 }
 
 form{

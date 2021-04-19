@@ -32,12 +32,43 @@
   color: #593414;
   font-weight: normal;
 }
+html {
+  overflow-x: hidden;
+}
 body {
   background-color: #F2ECD8;
+  overflow-x: hidden;
 }
+/* Header */
+nav {
+  background-color: #FCF7E0;
+}
+nav a {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: normal;
+}
+/*  Home Page  */
 .header {
   text-align: center;
   margin-top: 50px;
+}
+.pizza-container {
+  margin-top: 50px;
+}
+.pizza-container .row .col {
+  border: 1px solid;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.pizza-container .pizza-wrapper {
+  border: 1px solid red;
+  width: fit-content;
+}
+.pizza-container .pizza-wrapper img {
+  width: 400px;
 }
 form {
   width: 350px;

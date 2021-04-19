@@ -15,9 +15,9 @@
 
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light w-100">
   <div class="container-fluid">
-    <a class="navbar-brand" href="<?php echo './'; ?>">Logo</a>
+    <a class="navbar-brand" href="<?php echo './'; ?>"><img src="assets/logo.svg" alt="logo" width="60"></a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
 
       <ul class="navbar-nav ml-0 mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<?php echo './'; ?>">Home</a>
+          <a class="nav-link" aria-current="page" href="<?php echo './'; ?>">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?php echo 'login.php'; ?>">Account</a>
