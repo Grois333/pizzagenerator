@@ -45,17 +45,18 @@ mysqli_close($db);
                     <div class="col">
                         <!-- <img src="img/pizza.svg"class="pizza"> -->
                         <div class="pizza-wrapper">
-                            <img src="<?=$imageURL;?>" alt="pizza">
+                            <div class="pizza-images-wrapper">
+                                <img src="<?=$imageURL;?>" alt="pizza">
+                            </div>
                                 <h6><?php echo htmlspecialchars($pizza['title']); ?></h6>
                                 <ul class="">
                                     <?php foreach(explode(',', $pizza['ingredients']) as $ing): ?>
                                         <li><?php echo htmlspecialchars($ing); ?></li>
                                     <?php endforeach; ?>
                                 </ul>
+                                <a class="" href="details.php?id=<?php echo $pizza['id'] ?>">More info</a>
                         </div>
-                        <div class="">
-                            <a class="" href="details.php?id=<?php echo $pizza['id'] ?>">more info</a>
-                        </div>
+   
                     </div>
 
                 <?php endforeach; ?>
