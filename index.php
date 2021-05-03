@@ -33,8 +33,8 @@ mysqli_close($db);
 
     <?php if($pizzas > 0){ ?>
 
-        <div class="container pizza-container">
-            <div class="row">
+        <div class="container-fluid pizza-container">
+            <div class="row justify-content-center">
 
                 <?php foreach($pizzas as $pizza): 
 
@@ -42,13 +42,13 @@ mysqli_close($db);
                     
                 ?>
 
-                    <div class="col">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 card_container">
                         <!-- <img src="img/pizza.svg"class="pizza"> -->
                         <div class="pizza-wrapper">
                             <div class="pizza-images-wrapper">
                                 <img src="<?=$imageURL;?>" alt="pizza">
                             </div>
-                                <h6><?php echo htmlspecialchars($pizza['title']); ?></h6>
+                                <h5 class="text"><?php echo htmlspecialchars($pizza['title']); ?></h5>
                                 <ul class="">
                                     <?php foreach(explode(',', $pizza['ingredients']) as $ing): ?>
                                         <li><?php echo htmlspecialchars($ing); ?></li>

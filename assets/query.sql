@@ -38,9 +38,10 @@ CREATE TABLE `orders`
     `comments`varchar(255) NOT NULL,
     `order_date` DATETIME NOT NULL
                 DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY `id`(`id`),
-    FOREIGN KEY(`id_of_pizza`) REFERENCES `pizzas`(`pizza_id`)
+    PRIMARY KEY `id`(`id`)
+    
 );
+FOREIGN KEY(`id_of_pizza`) REFERENCES `pizzas`(`pizza_id`)
 
 
 

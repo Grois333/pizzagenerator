@@ -121,15 +121,14 @@ if(isset($_GET['id'])){
 
 <?php include('templates/header.php'); ?>
 
-<INPUT type="button" value="Back" onClick="history.go(-1);">
+<INPUT class="back" type="button" value="&larr; Back" onClick="history.go(-1);">
 
-<div class="container center grey-text">
+<div class="container-fluid center grey-text text-center">
 		<?php if($pizza): ?>
-            <img src="<?=$imageURL;?>" alt="pizza">
-			<h4><?php echo $pizza['title']; ?></h4>
-			<h5>Ingredients:</h5>
-			<p><?php echo $pizza['ingredients']; ?></p>
-            <p>Created on: <?php echo $date; ?></p>
+            <div class="pizza-image-wrapper"><img src="<?=$imageURL;?>" alt="pizza"></div>
+			<h4 class="title"><?php echo $pizza['title']; ?></h4>
+			<div class="text">Ingredients: <?php echo $pizza['ingredients']; ?></div>
+            <div class="text">Created on: <?php echo $date; ?></div>
 
 
 			<!-- DELETE FORM -->
@@ -145,7 +144,7 @@ if(isset($_GET['id'])){
 
                     if($_SESSION['user_id'] == $pizza['pizza_id']): ?>
 
-                        <form action="<?=$_SERVER['PHP_SELF'];?>" method="POST">
+                        <form class="delete_form" action="<?=$_SERVER['PHP_SELF'];?>" method="POST">
                             <input type="hidden" name="id_to_delete" value="<?php echo $pizza['id']; ?>">
                             <input type="submit" name="delete" value="Delete" class="btn">
                         </form>
