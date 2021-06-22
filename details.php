@@ -156,7 +156,7 @@ if(isset($_GET['id'])){
                <!-- ORDER FORM MODAL -->
 
                 <!-- Button trigger modal -->
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#orderModal">
+                <button type="button" class="btn order_btn" data-bs-toggle="modal" data-bs-target="#orderModal">
                 Order
                 </button>
 
