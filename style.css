@@ -195,8 +195,15 @@ form a:hover {
   align-items: center;
   padding: 0;
   flex-direction: column;
-  margin-top: 50px;
   padding: 30px;
+}
+@media (min-width: 500px) {
+  .content .logged_in {
+    margin-right: auto;
+  }
+  .content .welcome {
+    margin-right: auto;
+  }
 }
 .content .success h4 {
   margin: 0;
@@ -223,6 +230,58 @@ form a:hover {
 }
 .content .logout a {
   color: #F21D44;
+}
+.dashboard_form h4 {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: bold;
+  text-align: center;
+}
+.dashboard_form form {
+  margin-top: 0;
+}
+.dashboard_form form .ing {
+  width: 500px;
+}
+.dashboard_form form input[name='file'] {
+  background-color: #fffcf2;
+  border-radius: 5px;
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: normal;
+}
+.dashboard_form label {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: normal;
+}
+.dashboard_form label {
+  margin-top: 10px;
+}
+.dashboard_form form label:first-child {
+  margin-top: 0;
+}
+.dashboard_form form input[name='file']::file-selector-button {
+  background-color: #593414;
+  color: #F2ECD8;
+  border: unset;
+  cursor: pointer;
+  border-radius: 0.2em;
+}
+.dashboard_form form input[name='file']:hover {
+  cursor: pointer;
+}
+.dashboard_form form input[name='title'] {
+  background-color: #fffcf2;
+  border-radius: 5px;
+}
+.dashboard_form form input[name='ingredients'] {
+  background-color: #fffcf2;
+  border-radius: 5px;
+}
+.dashboard_form form input[name='add']:hover {
+  background-color: #593414;
+  color: #F2ECD8;
 }
 /* Order Table */
 table {
@@ -261,6 +320,8 @@ td img {
 }
 .back:hover {
   background-color: #FCF7E0;
+  background-color: #593414;
+  color: #F2ECD8;
 }
 .btn {
   background-color: transparent;
@@ -308,6 +369,16 @@ form[name='orderForm'] {
     width: auto;
   }
 }
+form[name='orderForm'] input {
+  border-radius: 5px;
+  margin-top: 10px;
+}
+form[name='orderForm'] input[name='name'] {
+  margin-top: 0;
+}
+form[name='orderForm'] textarea {
+  margin-top: 10px;
+}
 .pizza-image-wrapper {
   width: 300px;
   height: 300px;
@@ -335,5 +406,32 @@ form[name='orderForm'] {
 .delete_form .btn:hover {
   background-color: transparent;
   color: #F21D44;
+}
+/* Order Thank you  */
+.thank_you_container {
+  text-align: center;
+  margin: 100px 0;
+}
+.thank_you_container .thank_msg {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: bold;
+  font-size: 50px;
+  width: 70%;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.thank_you_container .order_back {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: normal;
+  font-size: 20px;
+}
+.thank_you_container .order_back a {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: normal;
+  font-weight: bold;
 }
 /* Responsive   */

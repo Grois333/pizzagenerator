@@ -116,7 +116,7 @@
 
 <div class="content">
     <?php if (isset($_SESSION['success'])): ?>
-        <div class="error success">
+        <div class="error success logged_in">
             <h4> 
                 <?php 
                 //echo $_SESSION['user_id'];
@@ -128,14 +128,14 @@
     <?php endif ?>
 
     <?php if (isset($_SESSION['username'])): ?>
-        <p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
+        <p class="welcome">Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
         <p class='logout'><a href="dashboard.php?logout='1'">Logout</a></p>
     <?php endif ?>
 </div>
 
 
-<section class="container ">
-		<h4 class="center">Add a Pizza</h4>
+<section class="container dashboard_form">
+		<h4 class="center">Add a Pizza!</h4>
 		<form class="" action="dashboard.php" method="POST" enctype="multipart/form-data">
 			<label>Upload Image</label>
             <input type="file" name="file">
@@ -145,7 +145,7 @@
 			<input type="text" name="title" value="<?php echo htmlspecialchars($title) ?>">
 			<div class="warning"><?php echo $addErrors['title']; ?></div>
 
-			<label>Ingredients (comma separated)</label>
+			<label class="ing">Ingredients (comma separated)</label>
 			<input type="text" name="ingredients" value="<?php echo htmlspecialchars($ingredients) ?>">
 			<div class="warning"><?php echo $addErrors['ingredients']; ?></div>
 
