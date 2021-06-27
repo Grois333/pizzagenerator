@@ -284,22 +284,68 @@ form a:hover {
   color: #F2ECD8;
 }
 /* Order Table */
-table {
+.orders-section {
+  margin: 50px 0;
+}
+.orders-section h4 {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: bold;
+  text-align: center;
+}
+.orders-section table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
   border: 1px solid #ddd;
 }
-th,
-td {
+.orders-section th {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: bold;
+  background-color: #59341411;
+}
+.orders-section td {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: normal;
+}
+.orders-section th,
+.orders-section td {
   text-align: left;
   padding: 8px;
 }
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+.orders-section tr:nth-child(even) {
+  background-color: #FCF7E0;
 }
-td img {
+.orders-section td img {
   width: 100px;
+}
+.orders-section form {
+  width: auto;
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-radius: unset;
+}
+.orders-section form input[name="confirm"] {
+  color: #593414;
+}
+.orders-section form input[name="confirm"]:hover {
+  cursor: pointer;
+  background-color: #593414;
+  color: #F2ECD8;
+}
+.orders_link {
+  text-align: center;
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: bold;
+}
+.orders_link a {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: bold;
 }
 /* Details page */
 .butt {

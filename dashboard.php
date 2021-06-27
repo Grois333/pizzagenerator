@@ -165,7 +165,7 @@
 
         <div class="">
 
-            <div class="">
+            <div class="" style="overflow-x:auto;">
 
                 <table border="1" cellspacing="0">
                     <tr>
@@ -235,7 +235,7 @@
 
 
 
-<h4>Check Orders <a href="order-history.php">History</a></h4>
+<h4 class="orders_link">Check Orders <a href="order-history.php">History</a></h4>
 
 
 <?php include('templates/footer.php'); ?>
