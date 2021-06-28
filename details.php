@@ -121,7 +121,7 @@ if(isset($_GET['id'])){
 
 <?php include('templates/header.php'); ?>
 
-<INPUT class="back" type="button" value="&larr; Back" onClick="history.go(-1);">
+<input class="back" type="button" value="&larr; Back" onClick="history.go(-1);">
 
 <div class="container-fluid center grey-text text-center">
 		<?php if($pizza): ?>

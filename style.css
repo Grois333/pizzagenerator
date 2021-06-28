@@ -114,6 +114,17 @@ footer div a:hover {
   margin: inherit;
   width: -webkit-fill-available;
 }
+.pizza-container .pizza-wrapper ul li {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: normal;
+}
+.pizza-container .pizza-wrapper a {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: normal;
+  color: #A6800F;
+}
 .pizza-container .pizza-wrapper .pizza-images-wrapper {
   width: 300px;
   height: 300px;
@@ -389,6 +400,11 @@ form a:hover {
 .modal-header {
   background-color: #F2ECD8;
 }
+.modal-header h5 {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: bold;
+}
 .modal-body {
   background-color: #F2ECD8;
   border-bottom-left-radius: calc(0.3rem - 1px);
@@ -479,5 +495,28 @@ form[name='orderForm'] textarea {
   color: #593414;
   font-weight: normal;
   font-weight: bold;
+}
+/* Order History Page  */
+.orders-history-section {
+  text-align: center;
+}
+.orders-history-section h4 {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: bold;
+}
+.orders-history-section table {
+  margin: 0 auto;
+  width: 100%;
+}
+.orders-history-section table th {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: bold;
+}
+.orders-history-section table td {
+  font-family: 'Poppins', 'sans-serif';
+  color: #593414;
+  font-weight: normal;
 }
 /* Responsive   */

@@ -40,7 +40,8 @@
 
 <?php include('templates/header.php'); ?>
 
-<INPUT type="button" value="Back" onClick="history.go(-1);">
+<!-- <input type="button" value="Back" onClick="history.go(-1);"> -->
+<input class="back" type="button" value="&larr; Back" onClick="history.go(-1);">
 
 
 <section class="orders-history-section">
@@ -51,7 +52,7 @@
 
         <div class="">
 
-            <div class="">
+            <div class="" style="overflow-x:auto;">
 
 
                 <table border="1" cellspacing="0">
