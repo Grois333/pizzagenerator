@@ -24,6 +24,12 @@
     // fetch the resulting rows as an array
     $confirmed_orders = mysqli_fetch_all($GetResult, MYSQLI_ASSOC);
 
+    // Method 2: fetch the resulting rows as an array
+    // $confirmed_orders = array();
+    // while($row = $GetResult->fetch_assoc()){
+    //     $confirmed_orders[] = $row;
+    // }
+
     // free the $result from memory (good practice)
     mysqli_free_result($GetResult);
 

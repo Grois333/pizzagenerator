@@ -24,6 +24,12 @@
     // fetch the resulting rows as an array
     $orders = mysqli_fetch_all($GetResult, MYSQLI_ASSOC);
 
+    // Method 2: fetch the resulting rows as an array
+    // $orders = array();
+    // while($row = $GetResult->fetch_assoc()){
+    //     $orders[] = $row;
+    // }
+
     // free the $result from memory (good practice)
     mysqli_free_result($GetResult);
 

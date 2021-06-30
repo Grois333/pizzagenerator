@@ -87,6 +87,7 @@ footer div a:hover {
 }
 .pizza-container .row {
   align-items: baseline ;
+  flex-direction: row-reverse;
 }
 .pizza-container .row .card_container {
   border: 1px solid;

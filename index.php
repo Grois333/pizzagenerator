@@ -13,6 +13,13 @@ $GetResult = mysqli_query($db, $GetPizza);
 // fetch the resulting rows as an array
 $pizzas = mysqli_fetch_all($GetResult, MYSQLI_ASSOC);
 
+// Method 2: fetch the resulting rows as an array
+// $pizzas = array();
+// while($row = $GetResult->fetch_assoc()){
+//     $pizzas[] = $row;
+// }
+
+
 // free the $result from memory (good practise)
 mysqli_free_result($GetResult);
 
