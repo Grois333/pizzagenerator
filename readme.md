@@ -1,6 +1,6 @@
 ## Pizzagenerator
 
-Project Link: <a href="http://pizzagenerator.atwebpages.com/" target="_blank"></a>
+### Project Link: [http://pizzagenerator.atwebpages.com/](url){:target="_blank"}
 
 ![Home Page](https://raw.githubusercontent.com/Grois333/pizzagenerator/master/project_images/pizza_generator.png)
 
